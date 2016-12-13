@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Source/ESahifa/bin/Debug
+/Source/ESahifa/bld/Debug
+/Source/.vs/eSahifa/v14
+/Source/ESahifa/eSahifa.UI.jsproj.user
