@@ -11,5 +11,7 @@
     <BadgeLogoSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</BadgeLogoSource>
     <PackageLogoSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</PackageLogoSource>
     <AppxShowAllApps>False</AppxShowAllApps>
+    <AppxPackageIsForStore>True</AppxPackageIsForStore>
+    <AppxBuildConfigurationSelection>neutral</AppxBuildConfigurationSelection>
   </PropertyGroup>
 </Project>
