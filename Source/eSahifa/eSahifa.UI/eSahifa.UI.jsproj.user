@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</Source>
+    <SmallTileSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</SmallTileSource>
+    <MediumTileSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</MediumTileSource>
+    <WideTileSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</WideTileSource>
+    <LargeTileSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</LargeTileSource>
+    <AppIconSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</AppIconSource>
+    <SplashScreenSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</SplashScreenSource>
+    <BadgeLogoSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</BadgeLogoSource>
+    <PackageLogoSource>C:\Users\adenw\OneDrive\Resources\Design\Icons\WindowsIcons-master\WindowsPhone\dark\appbar.book.hardcover.open.png</PackageLogoSource>
+    <AppxShowAllApps>False</AppxShowAllApps>
+  </PropertyGroup>
+</Project>
