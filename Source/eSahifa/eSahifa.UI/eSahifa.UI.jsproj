@@ -54,6 +54,9 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>eSahifa.UI_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>5D9D2D833815CB03116E8C1D11B1AD32DDA1B190</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
