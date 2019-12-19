@@ -19,7 +19,7 @@ namespace eSahifa.Books.Downloader
                 var directory = args.FirstOrDefault() ?? Environment.CurrentDirectory;
                 Console.WriteLine("Output Directory: " + directory);
                 int bookNumber = 1;
-                while (true)
+                while (bookNumber <= 20)
                 {
                     bool completed = DownloadBook(directory, bookNumber).Result;
                     if (completed == false)
@@ -31,50 +31,63 @@ namespace eSahifa.Books.Downloader
             {
                 Console.WriteLine("APPLICATION FAILURE!");
                 Console.WriteLine(ex.ToString());
-                Console.Read();
             }
+            Console.WriteLine(string.Empty);
+            Console.WriteLine("BOOK DOWNLOAD IS COMPLETE!!!");
+            Console.Read();
         }
 
         static async Task<bool> DownloadBook(string directory, int bookNumber)
         {
             var di = Directory.CreateDirectory(Path.Combine(directory, $"Book{bookNumber:D5}"));
-            Console.WriteLine("Output Directory: " + di.FullName);
-            Console.WriteLine($"Starting download of Book {bookNumber}...");
+            Console.WriteLine($"Starting download of Book {bookNumber} to {di.FullName}");
 
             using (HttpClient client = new HttpClient())
             {
-                int pageNumber = 1;
-                while (true)
+                int pageNumber = 0;
+                while (bookNumber <= 20)
                 {
-                    Console.Write($"Downloading book {bookNumber} page {pageNumber}...");
-
                     try
                     {
-                        string filePath = di.FullName + $"\\{pageNumber:D3}.jpg";
-
-                        if (!File.Exists(filePath))
+                        if (pageNumber == 0)
                         {
-                            string url = $"https://esahifa.com/books/bk{bookNumber:D5}/{pageNumber:D3}.jpg";
-                            Console.Write(url);
-
-                            // Send  request asynchronously
-                            using (HttpResponseMessage response = await client.GetAsync(url))
+                            try
                             {
-                                // Check that response was successful or throw exception
-                                response.EnsureSuccessStatusCode();
-
-                                // Read response asynchronously and save asynchronously to file
-                                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                                Console.Write($"Downloading book {bookNumber} thumbnail...");
+                                string filePath = di.FullName + $"\\thumb.jpg";
+                                if (!File.Exists(filePath))
                                 {
-                                    // Copy the content from response to filestream
-                                    await response.Content.CopyToAsync(fileStream);
+                                    string url = $"https://esahifa.com/books/bk{bookNumber:D5}/thumb.jpg";
+                                    Console.Write(url);
+                                    await DownloadFile(client, filePath, url);
+                                    Console.WriteLine("...DONE!");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("already exists.");
                                 }
                             }
-                            Console.WriteLine("...DONE!");
+                            catch(Exception)
+                            {
+                                Console.WriteLine("could not download.");
+                            }
                         }
                         else
                         {
-                            Console.WriteLine("already exists.");
+                            Console.Write($"Downloading book {bookNumber} page {pageNumber}...");
+                            string filePath = di.FullName + $"\\{pageNumber:D3}.jpg";
+
+                            if (!File.Exists(filePath))
+                            {
+                                string url = $"https://esahifa.com/books/bk{bookNumber:D5}/{pageNumber:D3}.jpg";
+                                Console.Write(url);
+                                await DownloadFile(client, filePath, url);
+                                Console.WriteLine("...DONE!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("already exists.");
+                            }
                         }
 
                         pageNumber++;
@@ -98,6 +111,23 @@ namespace eSahifa.Books.Downloader
             {
                 Console.WriteLine($"Book {bookNumber} has been downloaded!");
                 return true;
+            }
+        }
+
+        private static async Task DownloadFile(HttpClient client, string filePath, string url)
+        {
+            // Send  request asynchronously
+            using (HttpResponseMessage response = await client.GetAsync(url))
+            {
+                // Check that response was successful or throw exception
+                response.EnsureSuccessStatusCode();
+
+                // Read response asynchronously and save asynchronously to file
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    // Copy the content from response to filestream
+                    await response.Content.CopyToAsync(fileStream);
+                }
             }
         }
     }
