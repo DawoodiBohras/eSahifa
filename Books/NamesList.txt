@@ -1,0 +1,20 @@
+1	617	Quran-e-Majeed	القرآن 
+2	256	Ayaat Hadith Kalaam - Part 1	روضة هدايات - ١
+3	312	Ayaat Hadith Kalaam - Part 2	روضة هدايات - ٢
+4	324	Ayaat Hadith Kalaam - Part 3	روضة هدايات - ٣
+5	599	Fajr Hafti	بركة اليواقيت الثمينه
+6	181	Busaheba Sahifa - 1	صحيفة غراء - ١ 
+7	298	Busaheba Sahifa - 2	صحيفة غراء - ٢
+8	178	Busaheba Sahifa - 3	صحيفة غراء - ٣
+9	427	Bihori Hafti	خزائن بركات الدعاء - بيهوري
+10	147	Daily Dua Hafti	وظائف الأدعية اليوميه
+11	431	Book	مغانم البركة 
+12	360	Madeh Qasaid	أزهر كنز المغاني
+13	294	Marasiyah	ليال عشر - نوحة
+14	52	Nasrul Mahabah	دعاء النصر والمهابة
+15	23	Dua ul Khadir / Kumail	دعاء الخضر - كميل
+16	16	Dua ul Kaamil	ألدعاء الكامل
+17	21	Dua us Saifee	ألدعاء السيفي
+18	144	Fulkul Husain	فضيلته ملك الحسين بكربلاء 
+19	56	Dua ul Joshan	دعاء الجوشن
+20	44	Ramadan Duao (Daska)	صحيفة أدعية رمضانيه
