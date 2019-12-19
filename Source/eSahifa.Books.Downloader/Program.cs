@@ -24,38 +24,41 @@ namespace eSahifa.Books.Downloader
                     bool completed = DownloadBook(directory, bookNumber).Result;
                     if (completed == false)
                         break;
+                    bookNumber++;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("APPLICATION FAILURE!");
                 Console.WriteLine(ex.ToString());
+                Console.Read();
             }
         }
 
         static async Task<bool> DownloadBook(string directory, int bookNumber)
         {
-            var di = Directory.CreateDirectory(Path.Combine(directory, "Book" + bookNumber));
+            var di = Directory.CreateDirectory(Path.Combine(directory, $"Book{bookNumber:D5}"));
             Console.WriteLine("Output Directory: " + di.FullName);
             Console.WriteLine($"Starting download of Book {bookNumber}...");
 
-            int pageNumber = 1;
-            while (true)
+            using (HttpClient client = new HttpClient())
             {
-                Console.Write($"Downloading book {bookNumber} page {pageNumber}...");
-
-                try
+                int pageNumber = 1;
+                while (true)
                 {
-                    string fileName = $"{pageNumber:D3}.jpg";
-                    string filePath = di.FullName + "\\" + fileName;
+                    Console.Write($"Downloading book {bookNumber} page {pageNumber}...");
 
-                    if (!File.Exists(filePath))
+                    try
                     {
-                        using (HttpClient client = new HttpClient())
-                        {
+                        string filePath = di.FullName + $"\\{pageNumber:D3}.jpg";
 
-                            //send  request asynchronously
-                            using (HttpResponseMessage response = await client.GetAsync($"https://esahifa.com/books/bk00001/{fileName}"))
+                        if (!File.Exists(filePath))
+                        {
+                            string url = $"https://esahifa.com/books/bk{bookNumber:D5}/{pageNumber:D3}.jpg";
+                            Console.Write(url);
+
+                            // Send  request asynchronously
+                            using (HttpResponseMessage response = await client.GetAsync(url))
                             {
                                 // Check that response was successful or throw exception
                                 response.EnsureSuccessStatusCode();
@@ -63,24 +66,25 @@ namespace eSahifa.Books.Downloader
                                 // Read response asynchronously and save asynchronously to file
                                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
                                 {
-                                    //copy the content from response to filestream
+                                    // Copy the content from response to filestream
                                     await response.Content.CopyToAsync(fileStream);
                                 }
                             }
+                            Console.WriteLine("...DONE!");
                         }
-                        Console.WriteLine("DONE!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("already exists.");
-                    }
+                        else
+                        {
+                            Console.WriteLine("already exists.");
+                        }
 
-                    pageNumber++;
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("FAILED!");
-                    break;
+                        pageNumber++;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("...FAILED!");
+                        Console.WriteLine(ex.ToString());
+                        break;
+                    }
                 }
             }
 
@@ -98,5 +102,3 @@ namespace eSahifa.Books.Downloader
         }
     }
 }
-
-
